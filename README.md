@@ -34,20 +34,21 @@ QHealth-QML-CBIS-DDSM/
 ├── src/                             The same three stages as plain Python scripts
 ├── figures/
 │   ├── make_preds.py                Saves per-patient predictions used by Figs. 3–6 and 8
-│   ├── make_figures.py              Regenerates Figs. 1–12 and Tables 2–5 from outputs/
+│   ├── make_figures.py              Regenerates Figs. 1–12 and Tables 2–5 from the result folders
 │   └── png/                         The 12 figures as submitted
-├── outputs/                         Results produced by our runs (inputs to make_figures.py)
-│   ├── stage1_224px/                Embeddings (3 CNN seeds + frozen ImageNet), patient splits, training histories
-│   ├── stage2_224px/                All Stage 2 result tables (main results)
-│   ├── stage3/                      IBM noise-model and hardware results
-│   ├── stage1_448px/, stage2_448px/ Resolution ablation
+├── stage1_224px/                    Patient splits and training histories (embeddings: see Releases)
+├── stage2_224px/                    All Stage 2 result tables (main results)
+├── stage3/                          IBM noise-model and hardware results
+├── stage1_448px/, stage2_448px/     Resolution ablation (results of our runs; inputs to make_figures.py)
 ├── requirements.txt
 ├── CITATION.cff
 └── LICENSE
 ```
 
-Trained CNN weights (`cnn_seed*.pt`, 16 MB each) are not stored here; Stage 1 recreates them, or download them from the
-Releases page if provided.
+**Large files are on the Releases page.** Download the four embedding files from release
+[v1.0.0](../../releases/tag/v1.0.0) (`embeddings_finetuned_seed42.npz`, `…seed43.npz`, `…seed44.npz`,
+`embeddings_imagenet.npz`) and put them in `stage1_224px/` before running Level 1 or Level 2 below.
+Trained CNN weights (`cnn_seed*.pt`) are not stored; Stage 1 recreates them.
 
 ## Data
 
@@ -56,13 +57,15 @@ CBIS-DDSM is **not** redistributed in this repository. Get it from either source
 * The Cancer Imaging Archive: https://doi.org/10.7937/K9/TCIA.2016.7O02S9CY
 * Kaggle JPEG release used in this study: `awsaf49/cbis-ddsm-breast-cancer-image-dataset`
 
-The files in `outputs/stage1_224px/` contain only derived embeddings, labels and the public CBIS-DDSM patient IDs.
+The files in `stage1_224px/` contain only derived embeddings, labels and the public CBIS-DDSM patient IDs.
 
 ## How to reproduce
 
-Pick the level you need. Each level starts from the outputs of the one before, which are already in `outputs/`.
+Pick the level you need. Each level starts from the outputs of the one before, which are already in this repository.
 
 ### Level 1 — regenerate all figures and tables (CPU, about 15–30 minutes)
+
+First download the embedding files from the release into `stage1_224px/` (see above).
 
 ```bash
 pip install -r requirements.txt
@@ -73,10 +76,10 @@ python figures/make_figures.py        # writes figures/out/figures and figures/o
 ### Level 2 — rerun Stage 2 from the saved embeddings (CPU, about 2–4 hours)
 
 ```bash
-EMB_GLOB="outputs/stage1_224px/embeddings_*.npz" OUT_DIR=outputs/stage2_rerun python src/stage2_qml_heads.py
+EMB_GLOB="stage1_224px/embeddings_*.npz" OUT_DIR=stage2_rerun python src/stage2_qml_heads.py
 ```
 
-Compare `outputs/stage2_rerun/stage2_summary_pooled.csv` with `outputs/stage2_224px/stage2_summary_pooled.csv`.
+Compare `stage2_rerun/stage2_summary_pooled.csv` with `stage2_224px/stage2_summary_pooled.csv`.
 
 ### Level 3 — full pipeline on Kaggle (free GPU)
 
@@ -104,13 +107,13 @@ For the 448-pixel ablation, set `img_size=448` and `batch_size=24` in the Stage 
 | Item | Produced by | Data |
 |---|---|---|
 | Fig. 1 architecture, Fig. 2 circuits | `make_figures.py` | — |
-| Figs. 3–6, 8 | `make_figures.py` after `make_preds.py` | `outputs/stage1_224px` |
-| Fig. 7 AUC over 15 runs, Table 4 | `make_figures.py` | `outputs/stage2_224px/stage2_results_all_seeds.csv` |
-| Fig. 9 noise | `make_figures.py` | `outputs/stage2_224px/stage2_noise_recalibration_all_seeds.csv` |
-| Fig. 10 IBM noise models and hardware | `make_figures.py` | `outputs/stage3/` |
-| Fig. 11 shots and qubits, Table 5 | `make_figures.py` | `outputs/stage2_224px/`, `outputs/stage2_448px/` |
-| Fig. 12 feature space and kernel | `make_figures.py` | `outputs/stage1_224px/` |
-| Table 2 splits, Table 3 settings | `make_figures.py` | `outputs/stage1_224px/split_seed42.csv` |
+| Figs. 3–6, 8 | `make_figures.py` after `make_preds.py` | `stage1_224px` |
+| Fig. 7 AUC over 15 runs, Table 4 | `make_figures.py` | `stage2_224px/stage2_results_all_seeds.csv` |
+| Fig. 9 noise | `make_figures.py` | `stage2_224px/stage2_noise_recalibration_all_seeds.csv` |
+| Fig. 10 IBM noise models and hardware | `make_figures.py` | `stage3/` |
+| Fig. 11 shots and qubits, Table 5 | `make_figures.py` | `stage2_224px/`, `stage2_448px/` |
+| Fig. 12 feature space and kernel | `make_figures.py` | `stage1_224px/` |
+| Table 2 splits, Table 3 settings | `make_figures.py` | `stage1_224px/split_seed42.csv` |
 
 Table 1 (comparison with prior studies) appears only in the manuscript.
 
