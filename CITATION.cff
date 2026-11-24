@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the article below."
+title: "Code for: Stable Ranking, Shifting Decisions: Hybrid Quantum Classifiers for Mammographic Breast Cancer Diagnosis under Hardware Noise"
+authors:
+  - family-names: "N"
+    given-names: "Mageshkumar"
+    affiliation: "SRM Institute of Science and Technology, Ramapuram, Chennai, India"
+  - family-names: "Srinivasan"
+    given-names: "Saravanan"
+    affiliation: "SRM Institute of Science and Technology, Ramapuram, Chennai, India"
+  - family-names: "N"
+    given-names: "ArunPriya"
+    affiliation: "Panimalar Engineering College, Chennai, India"
+license: MIT
+version: "1.0.0"
+date-released: "2026-11-24"
+preferred-citation:
+  type: article
+  title: "Stable Ranking, Shifting Decisions: Hybrid Quantum Classifiers for Mammographic Breast Cancer Diagnosis under Hardware Noise"
+  authors:
+    - family-names: "N"
+      given-names: "Mageshkumar"
+    - family-names: "Srinivasan"
+      given-names: "Saravanan"
+    - family-names: "N"
+      given-names: "ArunPriya"
+  journal: "Quantum Machine Intelligence"
+  status: submitted
+  year: 2026

@@ -1,0 +1,16 @@
+# Versions used to produce the published results (Python 3.11-3.13).
+# Kaggle images already include numpy, pandas, scikit-learn, torch and torchvision.
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.4
+matplotlib>=3.8
+pillow>=10.0
+torch>=2.1
+torchvision>=0.16
+pennylane>=0.38          # tested with 0.45
+qiskit>=1.2              # tested with 2.6 (Stage 3 and Fig. 2)
+qiskit-aer>=0.15         # tested with 0.18 (IBM device noise models)
+qiskit-ibm-runtime>=0.30 # only for the optional real-hardware run
+pylatexenc               # Qiskit circuit drawings (Fig. 2)
+python-docx              # Word versions of the tables
