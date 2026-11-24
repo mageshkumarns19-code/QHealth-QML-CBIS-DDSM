@@ -17,7 +17,7 @@ from sklearn.metrics import (roc_curve, roc_auc_score, precision_recall_curve, a
                              confusion_matrix)
 
 ROOT = Path(__file__).resolve().parents[1]
-S = ROOT / "outputs"
+S = ROOT   # result folders sit at the repository root
 S1, S1_448 = S / "stage1_224px", S / "stage1_448px"
 S2, S2_448 = S / "stage2_224px", S / "stage2_448px"
 S3 = S / "stage3"

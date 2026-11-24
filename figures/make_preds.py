@@ -15,7 +15,7 @@ def rec(module, *a, **k):
     HIST[type(module).__name__] = h
     return m, h
 g["train_torch"] = rec
-D = g["load"](sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "outputs" / "stage1_224px" / "embeddings_finetuned_seed42.npz"))
+D = g["load"](sys.argv[1] if len(sys.argv) > 1 else str(ROOT / "stage1_224px" / "embeddings_finetuned_seed42.npz"))
 preds, info = g["fit_heads"](D, 6, 0, {})
 out = {"preds": {k: (np.asarray(v[0]), np.asarray(v[1])) for k, v in preds.items()}, "info": info, "hist": HIST,
        "y_val": D["y_val"].astype(int), "y_test": D["y_test"].astype(int), "patient_test": D["patient_test"],
