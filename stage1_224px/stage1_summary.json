@@ -1,0 +1,63 @@
+{
+  "config": {
+    "backbone": "efficientnet_b0",
+    "img_size": 224,
+    "epochs": 30,
+    "batch_size": 32,
+    "lr": 0.0001,
+    "weight_decay": 0.0001,
+    "patience": 7,
+    "val_fraction": 0.2,
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "abnormality": "both",
+    "num_workers": 2,
+    "pretrained": true
+  },
+  "split_summary": [
+    {
+      "split": "fit",
+      "rois": 2227,
+      "malignant": 915,
+      "patients": 970,
+      "share": 0.639
+    },
+    {
+      "split": "test",
+      "rois": 704,
+      "malignant": 276,
+      "patients": 349,
+      "share": 0.202
+    },
+    {
+      "split": "val",
+      "rois": 552,
+      "malignant": 229,
+      "patients": 247,
+      "share": 0.158
+    }
+  ],
+  "cnn_results": [
+    {
+      "seed": 42,
+      "best_val_auc": 0.8527451431043573,
+      "cnn_test_auc": 0.7816944331572531,
+      "epochs_run": 16
+    },
+    {
+      "seed": 43,
+      "best_val_auc": 0.8361576908289711,
+      "cnn_test_auc": 0.780124102668292,
+      "epochs_run": 13
+    },
+    {
+      "seed": 44,
+      "best_val_auc": 0.7966130571078097,
+      "cnn_test_auc": 0.7687127522687254,
+      "epochs_run": 12
+    }
+  ]
+}
