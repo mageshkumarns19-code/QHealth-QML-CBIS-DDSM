@@ -1,0 +1,55 @@
+{
+  "config": {
+    "n_qubits": 6,
+    "layers": 3,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "epochs": 60,
+    "lr": 0.05,
+    "batch": 32,
+    "patience": 12,
+    "devices": [
+      "FakeTorino",
+      "FakeFez"
+    ],
+    "shots": 1024,
+    "target_sensitivity": 0.95,
+    "recal_sizes": [
+      20,
+      50,
+      100
+    ],
+    "max_eval": null,
+    "ibm_test_n": 150,
+    "ibm_val_n": 100
+  },
+  "circuits": [
+    {
+      "device": "FakeTorino noise model",
+      "depth": 193,
+      "two_qubit_gates": 72,
+      "ops": {
+        "sx": 174,
+        "rz": 138,
+        "cz": 72,
+        "measure": 1
+      }
+    },
+    {
+      "device": "FakeFez noise model",
+      "depth": 179,
+      "two_qubit_gates": 60,
+      "ops": {
+        "sx": 150,
+        "rz": 136,
+        "cz": 60,
+        "measure": 1
+      }
+    }
+  ]
+}

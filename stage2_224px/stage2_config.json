@@ -1,0 +1,67 @@
+{
+  "config": {
+    "n_qubits": 6,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "qubit_ablation": [
+      4,
+      8
+    ],
+    "vqc": {
+      "layers": 3,
+      "epochs": 60,
+      "lr": 0.05,
+      "batch": 32,
+      "patience": 12
+    },
+    "qnn": {
+      "layers": 2,
+      "hidden": 16,
+      "in_dim": 32,
+      "epochs": 60,
+      "lr": 0.02,
+      "batch": 32,
+      "patience": 12
+    },
+    "qsvm_grid": {
+      "bandwidth": [
+        0.02,
+        0.05,
+        0.1,
+        0.2
+      ],
+      "C": [
+        1.0,
+        10.0
+      ]
+    },
+    "target_sensitivity": 0.95,
+    "target_specificity": 0.9,
+    "n_boot": 1000,
+    "noise_p": [
+      0.0,
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1
+    ],
+    "noise_shots": 1024,
+    "recal_sizes": [
+      20,
+      50,
+      100
+    ]
+  },
+  "embedding_files": [
+    "embeddings_finetuned_seed42.npz",
+    "embeddings_finetuned_seed43.npz",
+    "embeddings_finetuned_seed44.npz",
+    "embeddings_imagenet.npz"
+  ]
+}
